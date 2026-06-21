@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS places (
     description TEXT,
     image_url TEXT,
     address VARCHAR(255),
-    rating NUMERIC(2,1) DEFAULT 0.0,
+    rating INTEGER,
     is_free BOOLEAN DEFAULT TRUE,
     city_id INTEGER NOT NULL,
     CONSTRAINT fk_city FOREIGN KEY (city_id) REFERENCES cities(id) ON DELETE CASCADE
