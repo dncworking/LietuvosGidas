@@ -9,6 +9,7 @@ import {
 import validatePlace from "../validators/place.js";
 import validate from "../validators/validate.js";
 import validateID from "../validators/id.js";
+import { protect } from "../controllers/authController.js";
 
 const placeRouter = express.Router();
 
@@ -16,13 +17,13 @@ const placeRouter = express.Router();
 placeRouter
   .route("/")
   .get(getAllPlaces)
-  .post(validatePlace, validate, createPlace);
+  .post(protect, validatePlace, validate, createPlace);
 
 // Kelias: /api/places/:id
 placeRouter
   .route("/:id")
   .get(validateID, validate, getPlaceById)
-  .put(validateID, validatePlace, validate, updatePlace)
-  .delete(validateID, validate, deletePlace);
+  .put(protect, validateID, validatePlace, validate, updatePlace)
+  .delete(protect, validateID, validate, deletePlace);
 
 export default placeRouter;

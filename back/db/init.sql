@@ -18,6 +18,17 @@ CREATE TABLE IF NOT EXISTS places (
     CONSTRAINT fk_city FOREIGN KEY (city_id) REFERENCES cities(id) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS users (
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,       
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(20) DEFAULT 'user' NOT NULL,
+    
+    -- Saugumo apribojimas: DB priims TIK 'user' arba 'admin' reiksmes
+    CONSTRAINT chk_role CHECK (role IN ('user', 'admin'))
+);
+
 -- 3. Įterpiame pradinius testinius duomenis nautomatu
 -- Pirmiausia įterpiame miestą ir iškart pasiimame jo ID tolimesniam naudojimui
 INSERT INTO cities (name) 

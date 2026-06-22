@@ -9,6 +9,7 @@ import {
 import validateCity from "../validators/city.js";
 import validate from "../validators/validate.js";
 import validateID from "../validators/id.js";
+import { protect } from "../controllers/authController.js";
 
 const cityRouter = express.Router();
 
@@ -16,13 +17,13 @@ const cityRouter = express.Router();
 cityRouter
   .route("/")
   .get(getAllCities)
-  .post(validateCity, validate, createCity);
+  .post(protect, validateCity, validate, createCity);
 
 // Kelias: /api/cities/:id
 cityRouter
   .route("/:id")
   .get(validateID, validate, getCityById)
-  .put(validateID, validateCity, validate, updateCity)
-  .delete(validateID, validate, deleteCity);
+  .put(protect, validateID, validateCity, validate, updateCity)
+  .delete(protect, validateID, validate, deleteCity);
 
 export default cityRouter;
