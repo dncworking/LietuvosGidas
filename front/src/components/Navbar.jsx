@@ -1,16 +1,19 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
 import styles from "../styles/Navbar.module.css";
 
-function Navbar() {
-  const { isAuthenticated, logout } = useContext(AuthContext);
+function Navbar({
+  search,
+  setSearch,
+  priceFilter,
+  setPriceFilter,
+  ratingFilter,
+  setRatingFilter,
+}) {
+  // Įrašome userRole prie išsitraukiamų kintamųjų
+  const { isAuthenticated, userRole, logout } = useContext(AuthContext);
   const navigate = useNavigate();
-
-  // Filtrų būsenos (vietinės, kad Navbar veiktų autonomiškai)
-  const [search, setSearch] = useState("");
-  const [priceFilter, setPriceFilter] = useState("all"); // all, free, paid
-  const [ratingFilter, setRatingFilter] = useState("none"); // none, high-to-low, low-to-high
 
   const handleLogout = () => {
     logout();
@@ -56,6 +59,16 @@ function Navbar() {
           <option value="high-to-low">Aukščiausias viršuje</option>
           <option value="low-to-high">Žemiausias viršuje</option>
         </select>
+
+        {/* DINAMINIS MYGTUKAS ADMINUI: Atsiranda tik prisijungusiam administratoriui */}
+        {isAuthenticated && userRole === "admin" && (
+          <button
+            className={styles.addPlaceBtn}
+            onClick={() => navigate("/places/new")}
+          >
+            + Pridėti vietą
+          </button>
+        )}
       </div>
 
       {/* 3. Vartotojo zona (Dinaminiai mygtukai) */}

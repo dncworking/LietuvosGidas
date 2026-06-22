@@ -1,0 +1,142 @@
+.container {
+  max-width: 75rem; /* ~1200px */
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem;
+  font-family:
+    "Quicksand",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+}
+
+.title {
+  color: #2c3e35;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* Kortelių tinklelis (Grid) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(18.75rem, 1fr)
+  ); /* Automatiškai dėlioja po 3-4 eilutėje */
+  gap: 2rem;
+}
+
+/* Pati kortelė */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #f1f0ea;
+  box-shadow: 0 4px 15px rgba(142, 153, 132, 0.06);
+  overflow: hidden;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(142, 153, 132, 0.12);
+}
+
+/* Kortelės nuotrauka */
+.cardImage {
+  width: 100%;
+  height: 12.5rem; /* ~200px */
+  object-fit: cover;
+}
+
+/* Kortelės vidus */
+.cardContent {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #2c3e35;
+  margin: 0;
+}
+
+.rating {
+  font-weight: 700;
+  color: #e67e22;
+  white-space: nowrap;
+}
+
+.type {
+  font-size: 0.85rem;
+  color: #557a69;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem 0;
+}
+
+.address {
+  font-size: 0.875rem;
+  color: #7a7870;
+  margin: 0 0 0.75rem 0;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: #4a554f;
+  line-height: 1.5;
+  margin: 0 0 1.25rem 0;
+  /* Apribojame tekstą iki 3 eilučių, jei aprašymas labai ilgas */
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Kortelės apačia */
+.cardFooter {
+  margin-top: auto; /* Prispaudžia ženkliuką prie apačios */
+}
+
+/* Ženkliukai Mokama/Nemokama */
+.badge {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  border-radius: 20px;
+}
+
+.free {
+  background-color: rgba(85, 122, 105, 0.1);
+  color: #557a69;
+}
+
+.paid {
+  background-color: rgba(192, 92, 92, 0.1);
+  color: #c05c5c;
+}
+
+/* Pagalbiniai stiliai būsenoms */
+.center,
+.noResults {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #7a7870;
+  padding: 4rem 1.25rem;
+}

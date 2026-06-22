@@ -2,11 +2,13 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/authServices.js";
 import styles from "../styles/Forms.module.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { AuthContext } from "../context/AuthContext.jsx";
 
 function Login() {
   const [serverError, setServerError] = useState("");
   const navigate = useNavigate();
+  const { loginStateUpdate } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -17,10 +19,13 @@ function Login() {
     setServerError("");
     try {
       const data = await login(formData);
-
+      console.log("Login atsakymas:", data);
       if (data.token) {
         localStorage.setItem("token", data.token);
+        const role =
+          data.data?.user?.role || data.user?.role || data.role || "user";
 
+        loginStateUpdate(role);
         navigate("/");
       }
     } catch (error) {
