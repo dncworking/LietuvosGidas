@@ -1,0 +1,22 @@
+meta {
+  name: updatecity
+  type: http
+  seq: 5
+}
+
+put {
+  url: http://localhost:3000/api/v1/cities/1
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "000"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

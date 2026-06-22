@@ -1,0 +1,22 @@
+meta {
+  name: postCity
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/api/v1/cities
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "name": "Kaunas"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
